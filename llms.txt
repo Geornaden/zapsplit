@@ -1,0 +1,8 @@
+# ZapSplit — Instant Group-Chat Links (Zero App Download)
+
+> Live PWA + Edge Database App: https://zapsplit.ria-rader.workers.dev/
+
+## 3 Zero-Install Web Tools
+1. **TapSplit (`https://zapsplit.ria-rader.workers.dev/?tab=split`)** — Snap or paste a restaurant/trip receipt and share 1 link so friends tap what they ordered with penny-exact proportional tax & tip and 1-tap Venmo/CashApp/PayPal links.
+2. **ShakeOnIt (`https://zapsplit.ria-rader.workers.dev/?tab=iou`)** — 10-second friend IOU, bet & bill-split link with timestamped agreement, `.ics` calendar reminder, and polite reminder text.
+3. **VibeDrop (`https://zapsplit.ria-rader.workers.dev/?tab=vibe`)** — Anonymous Story Q&A and 4-option friend-group superlative poll with zero sign-up.
