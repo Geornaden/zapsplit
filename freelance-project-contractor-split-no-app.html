@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Freelance Project &amp; Agency Milestone Expense Splitter (Zero App, No Sign-Up) | ZapSplit</title>
+  <meta name="description" content="Split client project milestones, software subscriptions, equipment rentals &amp; subcontractor payouts between freelancers, agencies &amp; co-founders. Free, instant net payouts, zero app download." />
+  <link rel="canonical" href="https://geornaden.github.io/zapsplit/freelance-project-contractor-split-no-app.html" />
+  <link rel="icon" type="image/svg+xml" href="https://zapsplit.ria-rader.workers.dev/og/home.svg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "ZapSplit — Freelance Project & Agency Milestone Splitter",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All (Web Browser, iOS Safari, Android Chrome)",
+        "inLanguage": "en-US",
+        "url": "https://geornaden.github.io/zapsplit/freelance-project-contractor-split-no-app.html",
+        "offers": {
+          "@type": "Offer",
+          "price": "0.00",
+          "priceCurrency": "USD",
+          "description": "100% free freelance project cost and milestone payout splitting. Optional $1.99 USD party pro pass."
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do freelancers and agencies split client milestones without expensive invoicing SaaS?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ZapSplit allows freelance teams, design duos, and dev agencies to enter the total client milestone payment, deduct shared expenses (like stock assets, hosting, or font licenses), and automatically distribute net payouts according to agreed percentages or fixed shares, with zero monthly subscription fees."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can we reimburse collaborators who paid for shared software licenses or equipment rentals?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Add any shared project expense and specify which collaborator paid upfront. ZapSplit automatically calculates reimbursements from the incoming client milestone before calculating final net earnings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do team members need to create an account or download an app?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. ZapSplit runs entirely inside any mobile or desktop web browser. You can generate a clean summary and share it instantly via Slack, Discord, WhatsApp, or email."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #070914;
+      --surface: #111827;
+      --border: #334155;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --green: #10b981;
+      --blue: #38bdf8;
+      --purple: #a855f7;
+      --amber: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, Inter, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 860px; margin: 0 auto; padding: 24px 18px 60px; }
+    .hero { text-align: center; padding: 24px 0 20px; }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      margin-bottom: 12px;
+    }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.2; margin: 0 0 12px; }
+    .hero p { color: var(--muted); font-size: 1.05rem; max-width: 680px; margin: 0 auto 20px; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .card h2 { margin-top: 0; font-size: 1.25rem; display: flex; align-items: center; gap: 8px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+    label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+    input, select, textarea {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      color: var(--text);
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--purple); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      font-size: 0.95rem;
+      border: none;
+    }
+    .btn-primary { background: #9333ea; color: #fff; }
+    .btn-primary:hover { background: #7e22ce; }
+    .btn-secondary { background: #1e293b; color: #e2e8f0; }
+    .btn-secondary:hover { background: #334155; }
+    .btn-success { background: #059669; color: #fff; }
+    .btn-success:hover { background: #047857; }
+    .table-responsive { overflow-x: auto; margin-top: 12px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; }
+    th { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; border-bottom: 1px solid var(--border); padding: 8px; }
+    td { padding: 10px 8px; border-bottom: 1px solid #1e293b; }
+    .settlement-card {
+      background: #0c1322;
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 14px;
+    }
+    .settlement-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #1e293b;
+      font-size: 0.95rem;
+    }
+    .settlement-item:last-child { border-bottom: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <span class="badge">💼 For Freelancers, Dev Shops &amp; Agencies</span>
+      <h1>Freelance Project &amp; Milestone Expense Splitter</h1>
+      <p>
+        Split incoming client payments, reimburse shared software licenses and stock assets, and calculate exact net collaborator payouts in seconds. Zero monthly invoicing fees, no accounts, and zero app download.
+      </p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <button id="btnPreset1" class="btn btn-secondary" style="font-size:0.82rem;padding:6px 12px;">Preset: Web Dev Agency ($7,500)</button>
+        <button id="btnPreset2" class="btn btn-secondary" style="font-size:0.82rem;padding:6px 12px;">Preset: Video Production ($4,800)</button>
+        <button id="btnPreset3" class="btn btn-secondary" style="font-size:0.82rem;padding:6px 12px;">Preset: 50/50 SaaS Duo ($3,000)</button>
+      </div>
+    </div>
+
+    <!-- Main Project Setup Card -->
+    <div class="card">
+      <h2>📁 Project &amp; Client Milestone Details</h2>
+      <div class="grid">
+        <div>
+          <label for="projectName">Project Name</label>
+          <input type="text" id="projectName" value="Fintech Brand Redesign &amp; MVP" />
+        </div>
+        <div>
+          <label for="currencySelect">Currency</label>
+          <select id="currencySelect">
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="CAD">CAD ($)</option>
+            <option value="AUD">AUD ($)</option>
+            <option value="CHF">CHF (Fr)</option>
+            <option value="JPY">JPY (¥)</option>
+            <option value="SGD">SGD ($)</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid" style="margin-top:14px;">
+        <div>
+          <label for="milestoneAmount">Client Milestone Deposit Amount</label>
+          <input type="number" id="milestoneAmount" value="7500" step="0.01" />
+        </div>
+        <div>
+          <label for="taxWithholding">Client Tax / Escrow Fee Deduction (%)</label>
+          <input type="number" id="taxWithholding" value="0" min="0" max="50" step="0.1" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Collaborators & Split Percentages Card -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h2>👥 Collaborators &amp; Payout Splits</h2>
+        <button id="btnAddCollaborator" class="btn btn-secondary" style="font-size:0.8rem;padding:4px 10px;">+ Add Person</button>
+      </div>
+      <p style="color:var(--muted);font-size:0.85rem;margin:6px 0 12px;">
+        Enter each teammate's role and their agreed revenue share percentage (must equal 100%).
+      </p>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Collaborator Name</th>
+              <th>Role</th>
+              <th>Split %</th>
+              <th style="width:50px;"></th>
+            </tr>
+          </thead>
+          <tbody id="collaboratorsTbody">
+            <tr>
+              <td><input type="text" value="Alex (Lead Dev)" class="collab-name" /></td>
+              <td><input type="text" value="Backend &amp; API" class="collab-role" /></td>
+              <td><input type="number" value="50" class="collab-pct" min="0" max="100" /></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="Maya (UI/UX)" class="collab-name" /></td>
+              <td><input type="text" value="Figma &amp; Design" class="collab-role" /></td>
+              <td><input type="number" value="30" class="collab-pct" min="0" max="100" /></td>
+              <td><button class="btn btn-secondary btn-del-collab" style="padding:4px 8px;">✕</button></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="Sam (Copywriter)" class="collab-name" /></td>
+              <td><input type="text" value="Brand &amp; Pitch" class="collab-role" /></td>
+              <td><input type="number" value="20" class="collab-pct" min="0" max="100" /></td>
+              <td><button class="btn btn-secondary btn-del-collab" style="padding:4px 8px;">✕</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:10px;text-align:right;font-size:0.88rem;">
+        Total Split: <strong id="totalPctDisplay" style="color:var(--green);">100%</strong>
+      </div>
+    </div>
+
+    <!-- Shared Project Expenses Card -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h2>🛠️ Shared Project Expenses &amp; Tool Reimbursements</h2>
+        <button id="btnAddExpense" class="btn btn-secondary" style="font-size:0.8rem;padding:4px 10px;">+ Add Expense</button>
+      </div>
+      <p style="color:var(--muted);font-size:0.85rem;margin:6px 0 12px;">
+        Expenses paid out-of-pocket by a collaborator will be reimbursed from the milestone before calculating net profits.
+      </p>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Expense Description</th>
+              <th>Paid By</th>
+              <th>Amount</th>
+              <th style="width:50px;"></th>
+            </tr>
+          </thead>
+          <tbody id="expensesTbody">
+            <tr>
+              <td><input type="text" value="Figma Organization Seats &amp; Fonts" class="exp-desc" /></td>
+              <td><input type="text" value="Maya (UI/UX)" class="exp-payer" /></td>
+              <td><input type="number" value="120.00" class="exp-amount" step="0.01" /></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="Supabase &amp; Cloudflare Hosting" class="exp-desc" /></td>
+              <td><input type="text" value="Alex (Lead Dev)" class="exp-payer" /></td>
+              <td><input type="number" value="85.00" class="exp-amount" step="0.01" /></td>
+              <td><button class="btn btn-secondary btn-del-exp" style="padding:4px 8px;">✕</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Calculate Button -->
+    <div style="text-align:center;margin:24px 0;">
+      <button id="btnCalculate" class="btn btn-primary" style="font-size:1.05rem;padding:12px 28px;width:100%;max-width:420px;">
+        ⚡ Calculate Net Collaborator Payouts
+      </button>
+    </div>
+
+    <!-- Settlement Breakdown Card -->
+    <div id="resultsCard" class="card" style="display:none;border-color:rgba(168, 85, 247, 0.4);">
+      <h2>📊 Final Milestone Payout Breakdown</h2>
+      
+      <div class="grid" style="margin-bottom:16px;">
+        <div style="background:#0f172a;padding:12px;border-radius:8px;">
+          <div style="color:var(--muted);font-size:0.8rem;">Gross Client Deposit</div>
+          <div id="resGrossDeposit" style="font-size:1.3rem;font-weight:700;">$0.00</div>
+        </div>
+        <div style="background:#0f172a;padding:12px;border-radius:8px;">
+          <div style="color:var(--muted);font-size:0.8rem;">Total Reimbursed Expenses</div>
+          <div id="resTotalExpenses" style="font-size:1.3rem;font-weight:700;color:var(--amber);">$0.00</div>
+        </div>
+      </div>
+
+      <div style="background:#0f172a;padding:14px;border-radius:8px;margin-bottom:16px;">
+        <div style="color:var(--muted);font-size:0.82rem;">Distributable Net Project Pool (After Deductions)</div>
+        <div id="resNetPool" style="font-size:1.5rem;font-weight:800;color:var(--green);">$0.00</div>
+      </div>
+
+      <h3 style="font-size:1rem;color:var(--muted);margin-bottom:8px;">Payout Summary Per Collaborator</h3>
+      <div id="collaboratorSummaryList" class="settlement-card"></div>
+
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap;">
+        <button id="btnCopySummary" class="btn btn-secondary">📋 Copy Breakdown to Clipboard</button>
+        <button id="btnShareWhatsApp" class="btn btn-success">💬 Share on WhatsApp / Slack</button>
+      </div>
+    </div>
+
+    <!-- Viral Upsell Hook -->
+    <div class="card" style="background:linear-gradient(135deg,rgba(168,85,247,0.1) 0%,rgba(56,189,248,0.08) 100%);text-align:center;">
+      <h3 style="margin-top:0;">🚀 Need Custom Invoices &amp; Multi-Currency Conversion?</h3>
+      <p style="color:var(--muted);font-size:0.9rem;max-width:540px;margin:0 auto 14px;">
+        Unlock ZapSplit Project Pro for $1.99 USD. Save unlimited project templates, auto-convert multi-currency client payments, and export branded PDF payout sheets.
+      </p>
+      <a href="https://zapsplit.ria-rader.workers.dev/upgrade" target="_blank" class="btn btn-primary" style="font-size:0.9rem;">
+        Get ZapSplit Project Pro ($1.99 USD)
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const currencySymbols = {
+      USD: '$', EUR: '€', GBP: '£', CAD: 'CA$', AUD: 'AU$', CHF: 'Fr ', JPY: '¥', SGD: 'SG$'
+    };
+
+    function getSym() {
+      const code = document.getElementById('currencySelect').value;
+      return currencySymbols[code] || '$';
+    }
+
+    function calculate() {
+      const sym = getSym();
+      const milestone = parseFloat(document.getElementById('milestoneAmount').value) || 0;
+      const taxFeePct = parseFloat(document.getElementById('taxWithholding').value) || 0;
+
+      const taxDeduction = milestone * (taxFeePct / 100);
+      const netClientReceived = milestone - taxDeduction;
+
+      // Calculate expenses
+      const expenseRows = document.querySelectorAll('#expensesTbody tr');
+      let totalExpenses = 0;
+      const payerReimbursements = {};
+
+      expenseRows.forEach(row => {
+        const payer = (row.querySelector('.exp-payer').value || '').trim();
+        const amt = parseFloat(row.querySelector('.exp-amount').value) || 0;
+        totalExpenses += amt;
+        if (payer) {
+          payerReimbursements[payer] = (payerReimbursements[payer] || 0) + amt;
+        }
+      });
+
+      const distributablePool = Math.max(0, netClientReceived - totalExpenses);
+
+      // Collaborators
+      const collabRows = document.querySelectorAll('#collaboratorsTbody tr');
+      let totalPct = 0;
+      const collabs = [];
+
+      collabRows.forEach(row => {
+        const name = (row.querySelector('.collab-name').value || '').trim() || 'Collaborator';
+        const role = (row.querySelector('.collab-role').value || '').trim();
+        const pct = parseFloat(row.querySelector('.collab-pct').value) || 0;
+        totalPct += pct;
+        collabs.push({ name, role, pct });
+      });
+
+      document.getElementById('totalPctDisplay').textContent = totalPct + '%';
+      document.getElementById('totalPctDisplay').style.color = Math.abs(totalPct - 100) < 0.1 ? '#10b981' : '#f59e0b';
+
+      // Update DOM
+      document.getElementById('resGrossDeposit').textContent = sym + milestone.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      document.getElementById('resTotalExpenses').textContent = sym + totalExpenses.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      document.getElementById('resNetPool').textContent = sym + distributablePool.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+      const listContainer = document.getElementById('collaboratorSummaryList');
+      listContainer.innerHTML = '';
+
+      collabs.forEach(c => {
+        const baseShare = distributablePool * (c.pct / 100);
+        const reimbursement = payerReimbursements[c.name] || 0;
+        const totalPayout = baseShare + reimbursement;
+
+        const item = document.createElement('div');
+        item.className = 'settlement-item';
+        item.innerHTML = `
+          <div>
+            <strong>${c.name}</strong> <span style="color:var(--muted);font-size:0.8rem;">(${c.role} — ${c.pct}%)</span>
+            ${reimbursement > 0 ? `<div style="color:var(--amber);font-size:0.78rem;">+ Includes ${sym}${reimbursement.toFixed(2)} expense reimbursement</div>` : ''}
+          </div>
+          <div style="font-weight:700;font-size:1.1rem;color:var(--blue);">
+            ${sym}${totalPayout.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+          </div>
+        `;
+        listContainer.appendChild(item);
+      });
+
+      document.getElementById('resultsCard').style.display = 'block';
+    }
+
+    document.getElementById('btnCalculate').addEventListener('click', calculate);
+
+    // Add Collaborator
+    document.getElementById('btnAddCollaborator').addEventListener('click', () => {
+      const tbody = document.getElementById('collaboratorsTbody');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><input type="text" placeholder="Name" class="collab-name" /></td>
+        <td><input type="text" placeholder="Role" class="collab-role" /></td>
+        <td><input type="number" value="0" class="collab-pct" min="0" max="100" /></td>
+        <td><button class="btn btn-secondary btn-del-collab" style="padding:4px 8px;">✕</button></td>
+      `;
+      tbody.appendChild(tr);
+      attachDeleteListeners();
+    });
+
+    // Add Expense
+    document.getElementById('btnAddExpense').addEventListener('click', () => {
+      const tbody = document.getElementById('expensesTbody');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><input type="text" placeholder="Description" class="exp-desc" /></td>
+        <td><input type="text" placeholder="Paid by" class="exp-payer" /></td>
+        <td><input type="number" value="0.00" class="exp-amount" step="0.01" /></td>
+        <td><button class="btn btn-secondary btn-del-exp" style="padding:4px 8px;">✕</button></td>
+      `;
+      tbody.appendChild(tr);
+      attachDeleteListeners();
+    });
+
+    function attachDeleteListeners() {
+      document.querySelectorAll('.btn-del-collab').forEach(btn => {
+        btn.onclick = (e) => { e.target.closest('tr').remove(); calculate(); };
+      });
+      document.querySelectorAll('.btn-del-exp').forEach(btn => {
+        btn.onclick = (e) => { e.target.closest('tr').remove(); calculate(); };
+      });
+    }
+    attachDeleteListeners();
+
+    // Presets
+    document.getElementById('btnPreset1').addEventListener('click', () => {
+      document.getElementById('projectName').value = 'Fintech MVP & Web Portal';
+      document.getElementById('currencySelect').value = 'USD';
+      document.getElementById('milestoneAmount').value = '7500';
+      document.getElementById('taxWithholding').value = '0';
+      document.getElementById('collaboratorsTbody').innerHTML = `
+        <tr><td><input type="text" value="Alex (Lead Dev)" class="collab-name" /></td><td><input type="text" value="Backend & API" class="collab-role" /></td><td><input type="number" value="50" class="collab-pct" /></td><td></td></tr>
+        <tr><td><input type="text" value="Maya (UI/UX)" class="collab-name" /></td><td><input type="text" value="Figma & Design" class="collab-role" /></td><td><input type="number" value="30" class="collab-pct" /></td><td><button class="btn btn-secondary btn-del-collab" style="padding:4px 8px;">✕</button></td></tr>
+        <tr><td><input type="text" value="Sam (Copywriter)" class="collab-name" /></td><td><input type="text" value="Copy & Pitch" class="collab-role" /></td><td><input type="number" value="20" class="collab-pct" /></td><td><button class="btn btn-secondary btn-del-collab" style="padding:4px 8px;">✕</button></td></tr>
+      `;
+      document.getElementById('expensesTbody').innerHTML = `
+        <tr><td><input type="text" value="Figma Seats & Assets" class="exp-desc" /></td><td><input type="text" value="Maya (UI/UX)" class="exp-payer" /></td><td><input type="number" value="120.00" class="exp-amount" /></td><td></td></tr>
+        <tr><td><input type="text" value="Hosting & DB" class="exp-desc" /></td><td><input type="text" value="Alex (Lead Dev)" class="exp-payer" /></td><td><input type="number" value="85.00" class="exp-amount" /></td><td><button class="btn btn-secondary btn-del-exp" style="padding:4px 8px;">✕</button></td></tr>
+      `;
+      attachDeleteListeners();
+      calculate();
+    });
+
+    document.getElementById('btnPreset2').addEventListener('click', () => {
+      document.getElementById('projectName').value = 'Brand Commercial Video Shoot';
+      document.getElementById('currencySelect').value = 'USD';
+      document.getElementById('milestoneAmount').value = '4800';
+      document.getElementById('taxWithholding').value = '0';
+      document.getElementById('collaboratorsTbody').innerHTML = `
+        <tr><td><input type="text" value="Elena (Director)" class="collab-name" /></td><td><input type="text" value="Direction & Script" class="collab-role" /></td><td><input type="number" value="45" class="collab-pct" /></td><td></td></tr>
+        <tr><td><input type="text" value="Marcus (DP / Camera)" class="collab-name" /></td><td><input type="text" value="Cinematography" class="collab-role" /></td><td><input type="number" value="35" class="collab-pct" /></td><td><button class="btn btn-secondary btn-del-collab" style="padding:4px 8px;">✕</button></td></tr>
+        <tr><td><input type="text" value="Chloe (Editor)" class="collab-name" /></td><td><input type="text" value="Color & Sound" class="collab-role" /></td><td><input type="number" value="20" class="collab-pct" /></td><td><button class="btn btn-secondary btn-del-collab" style="padding:4px 8px;">✕</button></td></tr>
+      `;
+      document.getElementById('expensesTbody').innerHTML = `
+        <tr><td><input type="text" value="Lens & Lighting Rental" class="exp-desc" /></td><td><input type="text" value="Marcus (DP / Camera)" class="exp-payer" /></td><td><input type="number" value="450.00" class="exp-amount" /></td><td></td></tr>
+        <tr><td><input type="text" value="Location Permit & Catering" class="exp-desc" /></td><td><input type="text" value="Elena (Director)" class="exp-payer" /></td><td><input type="number" value="280.00" class="exp-amount" /></td><td><button class="btn btn-secondary btn-del-exp" style="padding:4px 8px;">✕</button></td></tr>
+      `;
+      attachDeleteListeners();
+      calculate();
+    });
+
+    document.getElementById('btnPreset3').addEventListener('click', () => {
+      document.getElementById('projectName').value = 'Micro-SaaS Co-Founder Split';
+      document.getElementById('currencySelect').value = 'USD';
+      document.getElementById('milestoneAmount').value = '3000';
+      document.getElementById('taxWithholding').value = '0';
+      document.getElementById('collaboratorsTbody').innerHTML = `
+        <tr><td><input type="text" value="Jordan (Technical Lead)" class="collab-name" /></td><td><input type="text" value="Full-Stack Dev" class="collab-role" /></td><td><input type="number" value="50" class="collab-pct" /></td><td></td></tr>
+        <tr><td><input type="text" value="Taylor (Growth & Sales)" class="collab-name" /></td><td><input type="text" value="Marketing & Ops" class="collab-role" /></td><td><input type="number" value="50" class="collab-pct" /></td><td><button class="btn btn-secondary btn-del-collab" style="padding:4px 8px;">✕</button></td></tr>
+      `;
+      document.getElementById('expensesTbody').innerHTML = `
+        <tr><td><input type="text" value="AWS / OpenAI API Costs" class="exp-desc" /></td><td><input type="text" value="Jordan (Technical Lead)" class="exp-payer" /></td><td><input type="number" value="145.00" class="exp-amount" /></td><td></td></tr>
+      `;
+      attachDeleteListeners();
+      calculate();
+    });
+
+    // Share buttons
+    document.getElementById('btnCopySummary').addEventListener('click', () => {
+      const proj = document.getElementById('projectName').value;
+      const sym = getSym();
+      const net = document.getElementById('resNetPool').textContent;
+      let text = `💼 ZapSplit Payout Breakdown: ${proj}\n💰 Distributable Net: ${net}\n\n`;
+      document.querySelectorAll('#collaboratorSummaryList .settlement-item').forEach(el => {
+        text += `• ${el.innerText.replace(/\n/g, ' ')}\n`;
+      });
+      text += `\nSplit calculated via ZapSplit: https://geornaden.github.io/zapsplit/freelance-project-contractor-split-no-app.html`;
+      navigator.clipboard.writeText(text).then(() => alert('Breakdown copied to clipboard!'));
+    });
+
+    document.getElementById('btnShareWhatsApp').addEventListener('click', () => {
+      const proj = document.getElementById('projectName').value;
+      const sym = getSym();
+      const net = document.getElementById('resNetPool').textContent;
+      let text = `💼 ZapSplit Payout Breakdown: ${proj}\n💰 Distributable Net: ${net}\n\n`;
+      document.querySelectorAll('#collaboratorSummaryList .settlement-item').forEach(el => {
+        text += `• ${el.innerText.replace(/\n/g, ' ')}\n`;
+      });
+      text += `\nSplit calculated via ZapSplit: https://geornaden.github.io/zapsplit/freelance-project-contractor-split-no-app.html`;
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+    });
+
+    calculate();
+  </script>
+</body>
+</html>
