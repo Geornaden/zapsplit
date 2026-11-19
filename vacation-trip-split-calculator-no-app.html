@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vacation &amp; Trip Cost Calculator: Split Group Airbnbs &amp; Dinners (Zero App, No Sign-Up) | ZapSplit</title>
+  <meta name="description" content="Calculate and split group vacation expenses, Airbnbs, rental cars, flights, groceries &amp; dinners with friends. Automatic debt minimization, zero app download &amp; zero sign-up required." />
+  <link rel="canonical" href="https://geornaden.github.io/zapsplit/vacation-trip-split-calculator-no-app.html" />
+  <link rel="icon" type="image/svg+xml" href="https://zapsplit.ria-rader.workers.dev/og/home.svg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "ZapSplit — Vacation & Trip Cost Split Calculator",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All (Web Browser, iOS Safari, Android Chrome)",
+        "inLanguage": "en-US",
+        "url": "https://geornaden.github.io/zapsplit/vacation-trip-split-calculator-no-app.html",
+        "offers": {
+          "@type": "Offer",
+          "price": "0.00",
+          "priceCurrency": "USD",
+          "description": "100% free vacation and trip expense splitting. Optional $1.99 USD party pro pass."
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does the ZapSplit Vacation Calculator minimize group debt?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When 4 to 10 friends spend money on different items during a vacation (one person pays for Airbnb, another rents the car, another buys groceries), ZapSplit calculates the net balance for each person and uses a debt-minimization algorithm to settle all balances in the fewest possible transactions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do friends need to download an app or create an account?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Zero app downloads and zero accounts. ZapSplit runs 100% in mobile and desktop browsers. You can share the breakdown link directly in WhatsApp, iMessage, Messenger, or Discord."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I split expenses in multiple currencies like EUR, GBP, CAD, or AUD?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. ZapSplit supports 16 global currencies with clean decimal rounding, making it ideal for international travel and backpacking trips."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #070914;
+      --surface: #111827;
+      --border: #334155;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --green: #10b981;
+      --blue: #38bdf8;
+      --pink: #ec4899;
+      --amber: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, Inter, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 860px; margin: 0 auto; padding: 24px 18px 60px; }
+    .hero { text-align: center; padding: 24px 0 20px; }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      margin-bottom: 12px;
+    }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.2; margin: 0 0 12px; }
+    .hero p { color: var(--muted); font-size: 1.05rem; max-width: 680px; margin: 0 auto 20px; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 720px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: var(--green);
+      color: #04130d;
+      font-weight: 800;
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.15s ease;
+    }
+    .btn:hover { background: #34d399; transform: translateY(-1px); }
+    .btn-outline {
+      background: #1e293b;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { background: #334155; }
+    .sample-btn {
+      background: #1e293b;
+      border: 1px solid var(--border);
+      color: #e2e8f0;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .sample-btn:hover { background: #334155; border-color: var(--green); }
+    input, select, textarea {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+    }
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .stat-box {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      text-align: center;
+    }
+    .stat-val { font-size: 1.5rem; font-weight: 800; color: #34d399; }
+    .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .debt-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 12px 0; }
+    th, td { padding: 10px; border-bottom: 1px solid var(--border); text-align: left; }
+    th { color: #34d399; background: #0f172a; }
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+      padding-top: 20px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="./index.html">&larr; All ZapSplit Tools</a>
+
+    <section class="hero">
+      <span class="badge">🌴 VACATION &amp; TRIP EXPENSE CALCULATOR &bull; ZERO APP DOWNLOAD</span>
+      <h1>Vacation &amp; Trip Cost Calculator: Split Group Airbnbs &amp; Dinners</h1>
+      <p>
+        Planning a weekend trip, Airbnb stay, road trip, or group dinner? Enter your group's expenses below. ZapSplit calculates who owes what and minimizes messy group debts into the fewest possible payments.
+      </p>
+      <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+        <a class="btn" href="https://zapsplit.ria-rader.workers.dev/?tab=split">Launch Full Mobile App &rarr;</a>
+      </div>
+    </section>
+
+    <!-- Interactive Calculator Card -->
+    <div class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;">
+        <h3 style="margin: 0;">🏖️ Interactive Trip Expense Splitter</h3>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <button type="button" class="sample-btn" id="btnSampleMiami">🌴 Miami Weekend (4 Friends)</button>
+          <button type="button" class="sample-btn" id="btnSampleSki">🏔️ Colorado Ski Cabin (6 Friends)</button>
+          <button type="button" class="sample-btn" id="btnSampleEuro">🇪🇺 Europe Backpacking (3 Friends)</button>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <div style="margin-bottom: 12px;">
+            <label for="tripFriends">Friends on Trip (Comma Separated)</label>
+            <input type="text" id="tripFriends" value="Alex, Sam, Jordan, Taylor" placeholder="Alex, Sam, Jordan, Taylor" />
+          </div>
+          <div style="margin-bottom: 12px;">
+            <label for="tripCurrency">Trip Currency</label>
+            <select id="tripCurrency">
+              <option value="$">USD ($)</option>
+              <option value="€">EUR (€)</option>
+              <option value="£">GBP (£)</option>
+              <option value="C$">CAD (C$)</option>
+              <option value="A$">AUD (A$)</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="stat-box">
+              <div class="stat-val" id="dispTotalCost">$2,200.00</div>
+              <div class="stat-label">Total Trip Cost</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" id="dispPerPerson">$550.00</div>
+              <div class="stat-label">Per-Person Share</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Expense Form -->
+      <div style="background: #0f172a; border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin: 16px 0;">
+        <h4 style="margin: 0 0 10px 0; color: #f8fafc; font-size: 0.95rem;">➕ Add New Trip Expense</h4>
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr auto; gap: 8px; align-items: end;">
+          <div>
+            <label for="newExpDesc">Description (e.g. Airbnb, Rental Car)</label>
+            <input type="text" id="newExpDesc" placeholder="Airbnb Beach House" />
+          </div>
+          <div>
+            <label for="newExpCat">Category</label>
+            <select id="newExpCat">
+              <option value="🏠 Housing">🏠 Housing</option>
+              <option value="🚗 Transport">🚗 Transport</option>
+              <option value="🍔 Food">🍔 Food</option>
+              <option value="🎟️ Activity">🎟️ Activity</option>
+            </select>
+          </div>
+          <div>
+            <label for="newExpPayer">Paid By</label>
+            <select id="newExpPayer"></select>
+          </div>
+          <div>
+            <label for="newExpAmt">Amount</label>
+            <input type="number" id="newExpAmt" placeholder="500.00" step="0.01" />
+          </div>
+          <div>
+            <button type="button" class="btn" id="btnAddExp" style="padding: 10px 14px;">Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expense List -->
+      <h4 style="margin: 16px 0 6px 0; color: var(--text);">Trip Expenses Ledger:</h4>
+      <div style="overflow-x: auto;">
+        <table id="tblExpenses">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Paid By</th>
+              <th>Amount</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyExpenses"></tbody>
+        </table>
+      </div>
+
+      <!-- Debt Minimization Result -->
+      <div style="margin-top: 20px;">
+        <h4 style="margin: 0 0 10px 0; color: #34d399;">⚡ Smart Debt Minimization (Fewest Payments):</h4>
+        <div id="divSettlements"></div>
+      </div>
+
+      <div style="display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap;">
+        <button type="button" class="btn" id="btnCopySummary">📋 Copy Group Summary</button>
+        <button type="button" class="btn btn-outline" id="btnShareWhatsApp">📲 Share via WhatsApp</button>
+      </div>
+    </div>
+
+    <!-- Feature Comparison Table -->
+    <div class="card">
+      <h3 style="margin-top: 0;">Why Travelers Choose ZapSplit Over Splitwise &amp; Excel</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Trip Split Feature</th>
+            <th style="color: #34d399;">ZapSplit (Web)</th>
+            <th>Splitwise</th>
+            <th>Excel / Sheets</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>App Download Required?</strong></td>
+            <td style="color: #34d399; font-weight: 700;">Zero — 100% web browser link</td>
+            <td>Yes, mandatory app</td>
+            <td>Spreadsheet viewer needed</td>
+          </tr>
+          <tr>
+            <td><strong>Sign-Up / Account Creation</strong></td>
+            <td style="color: #34d399; font-weight: 700;">Zero logins required</td>
+            <td>Everyone must create account</td>
+            <td>Google account required</td>
+          </tr>
+          <tr>
+            <td><strong>Expense Limits</strong></td>
+            <td style="color: #34d399; font-weight: 700;">Unlimited trip expenses</td>
+            <td>Strict 3-per-day paywall</td>
+            <td>Unlimited</td>
+          </tr>
+          <tr>
+            <td><strong>Automatic Debt Minimization</strong></td>
+            <td style="color: #34d399; font-weight: 700;">Included (Simplifies multi-debt)</td>
+            <td>Included</td>
+            <td>Complex manual formulas</td>
+          </tr>
+          <tr>
+            <td><strong>1-Tap Settle Payment Links</strong></td>
+            <td style="color: #34d399; font-weight: 700;">Venmo, Cash App, Zelle, PayPal</td>
+            <td>In-app integration</td>
+            <td>None (Manual keying)</td>
+          </tr>
+          <tr>
+            <td><strong>Cost</strong></td>
+            <td style="color: #34d399; font-weight: 700;">100% Free / $1.99 Party Pass</td>
+            <td>$39.99/yr Pro subscription</td>
+            <td>Free</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="card">
+      <h3 style="margin-top: 0;">Frequently Asked Questions</h3>
+      <div style="margin-bottom: 14px;">
+        <h4 style="margin: 0 0 4px 0; color: #f8fafc;">How does debt minimization work?</h4>
+        <p style="margin: 0; color: var(--muted); font-size: 0.92rem;">
+          Instead of everyone reimbursing each individual expense (which creates dozens of back-and-forth payments), ZapSplit nets everyone's total spend against their share. Those who paid more than average receive money directly from those who paid less, reducing 15 transactions down to 2 or 3.
+        </p>
+      </div>
+      <div style="margin-bottom: 14px;">
+        <h4 style="margin: 0 0 4px 0; color: #f8fafc;">Can my friends edit the trip expenses on their phones?</h4>
+        <p style="margin: 0; color: var(--muted); font-size: 0.92rem;">
+          Yes! By using the live ZapSplit edge app, anyone with the group link can view balances, add items, or tap to settle up instantly.
+        </p>
+      </div>
+    </div>
+
+    <footer>
+      <div><strong>ZapSplit</strong> &bull; Live Edge PWA: <a href="https://zapsplit.ria-rader.workers.dev/">zapsplit.ria-rader.workers.dev</a></div>
+      <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+        <a href="./index.html">Home</a>
+        <a href="./split-receipt-by-item-online-free-no-app.html">Split Receipt</a>
+        <a href="./free-splitwise-alternative-no-app-no-login-receipt-splitter.html">Splitwise Alternative</a>
+        <a href="./free-tricount-venmo-group-split-alternative.html">Tricount Alternative</a>
+        <a href="./friend-iou-bet-agreement-link-generator.html">Friend IOU</a>
+        <a href="./llms.txt">llms.txt</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+  (function () {
+    var SAMPLE_MIAMI = {
+      friends: ["Alex", "Sam", "Jordan", "Taylor"],
+      currency: "$",
+      expenses: [
+        { desc: "South Beach Airbnb", cat: "🏠 Housing", payer: "Alex", amount: 1200.00 },
+        { desc: "SUV Rental & Gas", cat: "🚗 Transport", payer: "Sam", amount: 450.00 },
+        { desc: "Grocery Stockup", cat: "🍔 Food", payer: "Jordan", amount: 180.00 },
+        { desc: "Group Seafood Dinner", cat: "🍔 Food", payer: "Taylor", amount: 250.00 },
+        { desc: "Catamaran Boat Tour", cat: "🎟️ Activity", payer: "Alex", amount: 120.00 }
+      ]
+    };
+
+    var SAMPLE_SKI = {
+      friends: ["Chris", "Morgan", "Casey", "Pat", "Riley", "Jamie"],
+      currency: "$",
+      expenses: [
+        { desc: "Breckenridge Chalet", cat: "🏠 Housing", payer: "Chris", amount: 2400.00 },
+        { desc: "AWD Van Rental", cat: "🚗 Transport", payer: "Morgan", amount: 650.00 },
+        { desc: "Lift Tickets Package", cat: "🎟️ Activity", payer: "Casey", amount: 1200.00 },
+        { desc: "Mountain Groceries & Beer", cat: "🍔 Food", payer: "Pat", amount: 380.00 }
+      ]
+    };
+
+    var SAMPLE_EUROPE = {
+      friends: ["Emma", "Lucas", "Maya"],
+      currency: "€",
+      expenses: [
+        { desc: "Barcelona Apartments", cat: "🏠 Housing", payer: "Emma", amount: 680.00 },
+        { desc: "Eurail High Speed Passes", cat: "🚗 Transport", payer: "Lucas", amount: 420.00 },
+        { desc: "Tapas & Sangria Night", cat: "🍔 Food", payer: "Maya", amount: 165.00 },
+        { desc: "Sagrada Familia Entry", cat: "🎟️ Activity", payer: "Emma", amount: 95.00 }
+      ]
+    };
+
+    var currentTrip = JSON.parse(JSON.stringify(SAMPLE_MIAMI));
+
+    var tripFriends = document.getElementById('tripFriends');
+    var tripCurrency = document.getElementById('tripCurrency');
+    var dispTotalCost = document.getElementById('dispTotalCost');
+    var dispPerPerson = document.getElementById('dispPerPerson');
+    var tbodyExpenses = document.getElementById('tbodyExpenses');
+    var divSettlements = document.getElementById('divSettlements');
+    var newExpPayer = document.getElementById('newExpPayer');
+
+    function updatePayerDropdown() {
+      var friends = tripFriends.value.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+      newExpPayer.innerHTML = '';
+      friends.forEach(function (f) {
+        var opt = document.createElement('option');
+        opt.value = f;
+        opt.textContent = f;
+        newExpPayer.appendChild(opt);
+      });
+    }
+
+    function minimizeDebts(balances) {
+      var debtors = [];
+      var creditors = [];
+      for (var p in balances) {
+        var val = Math.round(balances[p] * 100) / 100;
+        if (val < -0.01) debtors.push({ person: p, amount: -val });
+        else if (val > 0.01) creditors.push({ person: p, amount: val });
+      }
+      debtors.sort(function (a, b) { return b.amount - a.amount; });
+      creditors.sort(function (a, b) { return b.amount - a.amount; });
+
+      var settlements = [];
+      var i = 0, j = 0;
+      while (i < debtors.length && j < creditors.length) {
+        var d = debtors[i];
+        var c = creditors[j];
+        var settleAmt = Math.min(d.amount, c.amount);
+        settlements.push({ from: d.person, to: c.person, amount: Math.round(settleAmt * 100) / 100 });
+        d.amount -= settleAmt;
+        c.amount -= settleAmt;
+        if (d.amount < 0.01) i++;
+        if (c.amount < 0.01) j++;
+      }
+      return settlements;
+    }
+
+    function render() {
+      var sym = tripCurrency.value;
+      var friends = tripFriends.value.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+      if (friends.length === 0) friends = ["Person 1", "Person 2"];
+
+      var total = 0;
+      currentTrip.expenses.forEach(function (e) { total += e.amount; });
+      var perPerson = friends.length > 0 ? total / friends.length : 0;
+
+      dispTotalCost.textContent = sym + total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      dispPerPerson.textContent = sym + perPerson.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+      // Render table
+      tbodyExpenses.innerHTML = '';
+      currentTrip.expenses.forEach(function (e, idx) {
+        var tr = document.createElement('tr');
+        tr.innerHTML = 
+          '<td>' + e.cat + '</td>' +
+          '<td><strong>' + e.desc + '</strong></td>' +
+          '<td>' + e.payer + '</td>' +
+          '<td>' + sym + e.amount.toFixed(2) + '</td>' +
+          '<td><button type="button" class="sample-btn" data-del="' + idx + '" style="padding:2px 8px;color:#f87171;">✕</button></td>';
+        tbodyExpenses.appendChild(tr);
+      });
+
+      // Calculate balances
+      var balances = {};
+      friends.forEach(function (f) { balances[f] = -perPerson; });
+      currentTrip.expenses.forEach(function (e) {
+        if (balances[e.payer] !== undefined) balances[e.payer] += e.amount;
+        else balances[e.payer] = e.amount - perPerson;
+      });
+
+      var settlements = minimizeDebts(balances);
+      divSettlements.innerHTML = '';
+      if (settlements.length === 0) {
+        divSettlements.innerHTML = '<div style="color:var(--muted);font-size:0.9rem;">All expenses are perfectly settled!</div>';
+      } else {
+        settlements.forEach(function (s) {
+          var row = document.createElement('div');
+          row.className = 'debt-item';
+          row.innerHTML = 
+            '<span>💸 <strong>' + s.from + '</strong> pays <strong>' + s.to + '</strong></span>' +
+            '<span style="color:#34d399;font-weight:800;">' + sym + s.amount.toFixed(2) + '</span>';
+          divSettlements.appendChild(row);
+        });
+      }
+
+      // Wire delete buttons
+      tbodyExpenses.querySelectorAll('[data-del]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var idx = parseInt(btn.getAttribute('data-del'), 10);
+          currentTrip.expenses.splice(idx, 1);
+          render();
+        });
+      });
+    }
+
+    // Add expense
+    document.getElementById('btnAddExp').addEventListener('click', function () {
+      var desc = document.getElementById('newExpDesc').value.trim();
+      var cat = document.getElementById('newExpCat').value;
+      var payer = newExpPayer.value;
+      var amt = parseFloat(document.getElementById('newExpAmt').value) || 0;
+      if (!desc || amt <= 0) return;
+
+      currentTrip.expenses.push({ desc: desc, cat: cat, payer: payer, amount: amt });
+      document.getElementById('newExpDesc').value = '';
+      document.getElementById('newExpAmt').value = '';
+      render();
+    });
+
+    // Preset handlers
+    function loadPreset(preset) {
+      currentTrip = JSON.parse(JSON.stringify(preset));
+      tripFriends.value = currentTrip.friends.join(', ');
+      tripCurrency.value = currentTrip.currency;
+      updatePayerDropdown();
+      render();
+    }
+
+    document.getElementById('btnSampleMiami').addEventListener('click', function () { loadPreset(SAMPLE_MIAMI); });
+    document.getElementById('btnSampleSki').addEventListener('click', function () { loadPreset(SAMPLE_SKI); });
+    document.getElementById('btnSampleEuro').addEventListener('click', function () { loadPreset(SAMPLE_EUROPE); });
+
+    tripFriends.addEventListener('input', function () {
+      updatePayerDropdown();
+      render();
+    });
+    tripCurrency.addEventListener('change', render);
+
+    // Copy summary
+    document.getElementById('btnCopySummary').addEventListener('click', function () {
+      var sym = tripCurrency.value;
+      var lines = ["🌴 Trip Expense Summary (ZapSplit):"];
+      lines.push("Total Cost: " + dispTotalCost.textContent + " (" + dispPerPerson.textContent + "/person)");
+      lines.push("\nSettlement Plan:");
+      divSettlements.querySelectorAll('.debt-item').forEach(function (el) {
+        lines.push(el.textContent.replace(/\s+/g, ' ').trim());
+      });
+      lines.push("\nSplit receipts without apps: https://geornaden.github.io/zapsplit/");
+      navigator.clipboard.writeText(lines.join('\n'));
+      var btn = this;
+      btn.textContent = 'Copied!';
+      setTimeout(function () { btn.textContent = '📋 Copy Group Summary'; }, 1600);
+    });
+
+    // Share WhatsApp
+    document.getElementById('btnShareWhatsApp').addEventListener('click', function () {
+      var lines = ["🌴 Trip Expense Summary (ZapSplit):"];
+      lines.push("Total Cost: " + dispTotalCost.textContent + " (" + dispPerPerson.textContent + "/person)");
+      lines.push("Settlement Plan:");
+      divSettlements.querySelectorAll('.debt-item').forEach(function (el) {
+        lines.push(el.textContent.replace(/\s+/g, ' ').trim());
+      });
+      var url = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(lines.join('\n'));
+      window.open(url, '_blank');
+    });
+
+    updatePayerDropdown();
+    render();
+  })();
+  </script>
+</body>
+</html>
