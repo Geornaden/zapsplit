@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Film &amp; Commercial Crew Expense Splitter: Kit Fees, Per Diems &amp; Day Rates | ZapSplit</title>
+  <meta name="description" content="Split commercial shoot budgets, crew kit fees, daily per diems, equipment rentals &amp; location costs between directors, DPs, sound mixers &amp; indie producers. Free, instant net payouts, zero app download." />
+  <link rel="canonical" href="https://geornaden.github.io/zapsplit/film-crew-production-expense-split-no-app.html" />
+  <link rel="icon" type="image/svg+xml" href="https://zapsplit.ria-rader.workers.dev/og/home.svg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "ZapSplit — Film & Commercial Crew Expense Splitter",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All (Web Browser, iOS Safari, Android Chrome)",
+        "inLanguage": "en-US",
+        "url": "https://geornaden.github.io/zapsplit/film-crew-production-expense-split-no-app.html",
+        "offers": {
+          "@type": "Offer",
+          "price": "0.00",
+          "priceCurrency": "USD",
+          "description": "100% free film & commercial shoot expense, kit fee, and crew day rate splitting. Optional $1.99 USD crew pro pass."
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do indie filmmakers and commercial crews split shoot budgets without expensive payroll software?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ZapSplit lets producers, directors, and department heads enter the total client shoot fee, deduct shared production expenses (like location permits, catering, and mileage), reimburse crew kit fees, and calculate net day rate payouts for every crew member instantly with zero subscription fees."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do kit fee reimbursements work when crew members bring their own equipment?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Each crew member providing gear (camera package, sound mixer kit, lighting & grip, or drone) enters their kit rental fee. ZapSplit reimburses this amount directly to that crew member on top of their labor day rate, ensuring equipment wear and tear is covered."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can we split travel per diems, mileage, and location rental costs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Add any out-of-pocket production expense, record which crew member covered it upfront, and ZapSplit will balance the books so every dollar spent on gas, food, or studio rental is reimbursed before calculating net profits."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do crew members need to create an account or download an app?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. ZapSplit runs 100% inside any mobile or desktop web browser. You can generate a clean shoot payout wrap sheet and share it instantly via WhatsApp, Slack, iMessage, or email."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #070914;
+      --surface: #111827;
+      --border: #334155;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --green: #10b981;
+      --blue: #38bdf8;
+      --purple: #a855f7;
+      --amber: #f59e0b;
+      --pink: #ec4899;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, Inter, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 860px; margin: 0 auto; padding: 24px 18px 60px; }
+    .hero { text-align: center; padding: 24px 0 20px; }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: rgba(236, 72, 153, 0.15);
+      color: #f472b6;
+      border: 1px solid rgba(236, 72, 153, 0.35);
+      margin-bottom: 12px;
+    }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.2; margin: 0 0 12px; }
+    .hero p { color: var(--muted); font-size: 1.05rem; max-width: 680px; margin: 0 auto 20px; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    h2 { font-size: 1.25rem; margin: 0 0 14px; color: var(--text); }
+    label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 6px; }
+    input, select {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--pink);
+      box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.2);
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    .table-responsive { width: 100%; overflow-x: auto; margin-top: 10px; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; min-width: 580px; }
+    th { padding: 10px; border-bottom: 1px solid var(--border); color: var(--muted); font-weight: 600; }
+    td { padding: 10px; border-bottom: 1px solid #1e293b; vertical-align: middle; }
+    table input { margin-bottom: 0; padding: 6px 10px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .btn-primary { background: linear-gradient(135deg, #ec4899, #be185d); color: #fff; }
+    .btn-primary:hover { opacity: 0.92; transform: translateY(-1px); }
+    .btn-secondary { background: #1e293b; color: #cbd5e1; border: 1px solid var(--border); }
+    .btn-secondary:hover { background: #334155; color: #fff; }
+    .btn-success { background: #059669; color: #fff; }
+    .btn-success:hover { background: #10b981; }
+    .settlement-card {
+      background: #0b1120;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 12px;
+    }
+    .settlement-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px dashed #1e293b;
+    }
+    .settlement-row:last-child { border-bottom: none; }
+    .badge-paid {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .faq-item { margin-bottom: 16px; }
+    .faq-q { font-weight: 600; color: #f1f5f9; margin-bottom: 4px; }
+    .faq-a { color: var(--muted); font-size: 0.92rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;">
+      <a href="./index.html" style="color:var(--muted);text-decoration:none;font-size:0.9rem;">&larr; Back to ZapSplit Home</a>
+      <span style="font-size:0.85rem;color:var(--pink);font-weight:600;">🎬 Film &amp; Crew Edition</span>
+    </div>
+
+    <div class="hero">
+      <span class="badge">ZERO APP &bull; NO LOGINS &bull; INSTANT WRAP SHEET</span>
+      <h1>Film &amp; Commercial Crew Expense Splitter</h1>
+      <p>
+        Split production budgets, kit rental fees, location costs &amp; crew day rates between directors, cinematographers, sound mixers, and indie producers with zero headaches.
+      </p>
+    </div>
+
+    <!-- Shoot Overview Card -->
+    <div class="card">
+      <h2>🎬 Shoot &amp; Client Budget Overview</h2>
+      <div class="grid">
+        <div>
+          <label for="projectName">Production / Shoot Title</label>
+          <input type="text" id="projectName" value="Nike Autumn Commercial (2-Day Shoot)" />
+        </div>
+        <div>
+          <label for="currencySelect">Currency</label>
+          <select id="currencySelect">
+            <option value="USD" selected>USD ($) — United States Dollar</option>
+            <option value="EUR">EUR (€) — Euro</option>
+            <option value="GBP">GBP (£) — British Pound</option>
+            <option value="CAD">CAD (CA$) — Canadian Dollar</option>
+            <option value="AUD">AUD (AU$) — Australian Dollar</option>
+            <option value="CHF">CHF (Fr) — Swiss Franc</option>
+            <option value="JPY">JPY (¥) — Japanese Yen</option>
+            <option value="SGD">SGD (SG$) — Singapore Dollar</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid">
+        <div>
+          <label for="clientMilestone">Total Client / Producer Shoot Fee</label>
+          <input type="number" id="clientMilestone" value="6500.00" min="0" step="0.01" />
+        </div>
+        <div>
+          <label for="agencyFee">Production Insurance / Escrow Retainage (%)</label>
+          <input type="number" id="agencyFee" value="5" min="0" max="50" step="0.1" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Crew Members & Day Rates Card -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h2>👥 Crew Members &amp; Agreed Day Rates</h2>
+        <button id="btnAddCrew" class="btn btn-secondary" style="font-size:0.8rem;padding:4px 10px;">+ Add Crew</button>
+      </div>
+      <p style="color:var(--muted);font-size:0.85rem;margin:6px 0 12px;">
+        Enter each crew member's name, role, number of shoot days, and base labor day rate.
+      </p>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Crew Member Name</th>
+              <th>Department / Role</th>
+              <th>Days</th>
+              <th>Day Rate</th>
+              <th style="width:50px;"></th>
+            </tr>
+          </thead>
+          <tbody id="crewTbody">
+            <tr>
+              <td><input type="text" value="Jordan V." class="crew-name" /></td>
+              <td><input type="text" value="Director &amp; DP" class="crew-role" /></td>
+              <td><input type="number" value="2" class="crew-days" min="1" max="60" /></td>
+              <td><input type="number" value="1200.00" class="crew-rate" step="0.01" /></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="Marcus T." class="crew-name" /></td>
+              <td><input type="text" value="Sound Recordist / Mixer" class="crew-role" /></td>
+              <td><input type="number" value="2" class="crew-days" min="1" max="60" /></td>
+              <td><input type="number" value="850.00" class="crew-rate" step="0.01" /></td>
+              <td><button class="btn btn-secondary btn-del-crew" style="padding:4px 8px;">✕</button></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="Elena R." class="crew-name" /></td>
+              <td><input type="text" value="Gaffer &amp; Grip Lead" class="crew-role" /></td>
+              <td><input type="number" value="2" class="crew-days" min="1" max="60" /></td>
+              <td><input type="number" value="700.00" class="crew-rate" step="0.01" /></td>
+              <td><button class="btn btn-secondary btn-del-crew" style="padding:4px 8px;">✕</button></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="Chloe S." class="crew-name" /></td>
+              <td><input type="text" value="1st AC / Focus Puller" class="crew-role" /></td>
+              <td><input type="number" value="2" class="crew-days" min="1" max="60" /></td>
+              <td><input type="number" value="550.00" class="crew-rate" step="0.01" /></td>
+              <td><button class="btn btn-secondary btn-del-crew" style="padding:4px 8px;">✕</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:10px;text-align:right;font-size:0.88rem;">
+        Total Base Labor: <strong id="totalLaborDisplay" style="color:var(--pink);">$6,600.00</strong>
+      </div>
+    </div>
+
+    <!-- Equipment Kit Fees Card -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h2>🎥 Equipment Kit Fees &amp; Gear Rentals</h2>
+        <button id="btnAddKit" class="btn btn-secondary" style="font-size:0.8rem;padding:4px 10px;">+ Add Gear</button>
+      </div>
+      <p style="color:var(--muted);font-size:0.85rem;margin:6px 0 12px;">
+        Gear provided personally by crew members (e.g. RED/ARRI camera kit, sound package, wireless monitors). Kit fees are paid directly to the owner.
+      </p>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Equipment Package</th>
+              <th>Kit Owner (Paid To)</th>
+              <th>Kit Rental Fee</th>
+              <th style="width:50px;"></th>
+            </tr>
+          </thead>
+          <tbody id="kitTbody">
+            <tr>
+              <td><input type="text" value="Sony FX6 Package + Cinema Primes" class="kit-desc" /></td>
+              <td><input type="text" value="Jordan V." class="kit-owner" /></td>
+              <td><input type="number" value="500.00" class="kit-amount" step="0.01" /></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="Sound Devices 833 + Wireless Lavs" class="kit-desc" /></td>
+              <td><input type="text" value="Marcus T." class="kit-owner" /></td>
+              <td><input type="number" value="350.00" class="kit-amount" step="0.01" /></td>
+              <td><button class="btn btn-secondary btn-del-kit" style="padding:4px 8px;">✕</button></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="Aputure 600d / Nova LED Lighting Kit" class="kit-desc" /></td>
+              <td><input type="text" value="Elena R." class="kit-owner" /></td>
+              <td><input type="number" value="300.00" class="kit-amount" step="0.01" /></td>
+              <td><button class="btn btn-secondary btn-del-kit" style="padding:4px 8px;">✕</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Production Expenses & Per Diems Card -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h2>⛽ Production Expenses, Per Diems &amp; Location Rentals</h2>
+        <button id="btnAddExp" class="btn btn-secondary" style="font-size:0.8rem;padding:4px 10px;">+ Add Out-of-Pocket</button>
+      </div>
+      <p style="color:var(--muted);font-size:0.85rem;margin:6px 0 12px;">
+        Out-of-pocket expenses covered upfront (catering, location permit, van rental, gas). The paying crew member gets 100% reimbursed.
+      </p>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Expense Description</th>
+              <th>Paid Upfront By</th>
+              <th>Amount</th>
+              <th style="width:50px;"></th>
+            </tr>
+          </thead>
+          <tbody id="expTbody">
+            <tr>
+              <td><input type="text" value="Studio Location Rental &amp; Permit" class="prod-desc" /></td>
+              <td><input type="text" value="Jordan V." class="prod-payer" /></td>
+              <td><input type="number" value="600.00" class="prod-amount" step="0.01" /></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="Crew Craft Services &amp; Lunch (2 Days)" class="prod-desc" /></td>
+              <td><input type="text" value="Chloe S." class="prod-payer" /></td>
+              <td><input type="number" value="280.00" class="prod-amount" step="0.01" /></td>
+              <td><button class="btn btn-secondary btn-del-exp" style="padding:4px 8px;">✕</button></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="Grip Van Gas &amp; Tolls" class="prod-desc" /></td>
+              <td><input type="text" value="Elena R." class="prod-payer" /></td>
+              <td><input type="number" value="95.00" class="prod-amount" step="0.01" /></td>
+              <td><button class="btn btn-secondary btn-del-exp" style="padding:4px 8px;">✕</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Calculate Button -->
+    <div style="text-align:center;margin:24px 0;">
+      <button id="btnCalculate" class="btn btn-primary" style="font-size:1.05rem;padding:12px 28px;width:100%;max-width:420px;">
+        ⚡ Calculate Shoot Wrap Sheet &amp; Net Payouts
+      </button>
+    </div>
+
+    <!-- Wrap Sheet Breakdown Card -->
+    <div id="resultsCard" class="card" style="display:none;border-color:rgba(236, 72, 153, 0.4);">
+      <h2>📊 Final Shoot Wrap Sheet &amp; Payout Breakdown</h2>
+      
+      <div class="grid" style="margin-bottom:16px;">
+        <div style="background:#0f172a;padding:12px;border-radius:8px;">
+          <div style="color:var(--muted);font-size:0.8rem;">Gross Shoot Budget</div>
+          <div id="resGrossBudget" style="font-size:1.3rem;font-weight:700;">$0.00</div>
+        </div>
+        <div style="background:#0f172a;padding:12px;border-radius:8px;">
+          <div style="color:var(--muted);font-size:0.8rem;">Kit Fees &amp; Out-of-Pocket Reimbursements</div>
+          <div id="resTotalReimbursements" style="font-size:1.3rem;font-weight:700;color:var(--amber);">$0.00</div>
+        </div>
+      </div>
+
+      <div style="background:#0f172a;padding:14px;border-radius:8px;margin-bottom:16px;">
+        <div style="color:var(--muted);font-size:0.82rem;">Net Shoot Labor &amp; Profit Pool (After Insurance / Retainage &amp; Expenses)</div>
+        <div id="resNetPool" style="font-size:1.5rem;font-weight:800;color:var(--green);">$0.00</div>
+      </div>
+
+      <h3 style="font-size:1rem;color:var(--muted);margin-bottom:8px;">Net Payout Per Crew Member (Labor + Kit + Reimbursements)</h3>
+      <div id="crewSummaryList" class="settlement-card"></div>
+
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap;">
+        <button id="btnCopySummary" class="btn btn-secondary">📋 Copy Wrap Sheet to Clipboard</button>
+        <button id="btnShareWhatsApp" class="btn btn-success">💬 Share on WhatsApp / Slack</button>
+      </div>
+    </div>
+
+    <!-- Pro Upsell Hook -->
+    <div class="card" style="background:linear-gradient(135deg,rgba(236,72,153,0.1) 0%,rgba(56,189,248,0.08) 100%);text-align:center;">
+      <h3 style="margin-top:0;">🚀 Need Branded Production PDF Call Sheets &amp; 1099 Invoices?</h3>
+      <p style="color:var(--muted);font-size:0.9rem;max-width:540px;margin:0 auto 14px;">
+        Unlock ZapSplit Crew Pro for $1.99 USD. Save unlimited shoot templates, export clean PDF wrap sheets, track multi-day overtime, and generate individual contractor 1099 payment receipts.
+      </p>
+      <a href="https://zapsplit.ria-rader.workers.dev/upgrade" target="_blank" class="btn btn-primary" style="font-size:0.9rem;">
+        Get ZapSplit Crew Pro ($1.99 USD)
+      </a>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="card">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">How do indie filmmakers and commercial crews split shoot budgets without payroll software?</div>
+        <div class="faq-a">ZapSplit lets producers, directors, and department heads enter the total client shoot fee, deduct shared production expenses (like location permits, catering, and mileage), reimburse crew kit fees, and calculate net day rate payouts for every crew member instantly with zero subscription fees.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do kit fee reimbursements work when crew members bring their own equipment?</div>
+        <div class="faq-a">Each crew member providing gear (camera package, sound mixer kit, lighting & grip, or drone) enters their kit rental fee. ZapSplit reimburses this amount directly to that crew member on top of their labor day rate, ensuring equipment wear and tear is covered.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can we split travel per diems, mileage, and location rental costs?</div>
+        <div class="faq-a">Yes. Add any out-of-pocket production expense, record which crew member covered it upfront, and ZapSplit will balance the books so every dollar spent on gas, food, or studio rental is reimbursed before calculating net profits.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do crew members need to create an account or download an app?</div>
+        <div class="faq-a">No. ZapSplit runs 100% inside any mobile or desktop web browser. You can generate a clean shoot payout wrap sheet and share it instantly via WhatsApp, Slack, iMessage, or email.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const currencySymbols = {
+      USD: '$', EUR: '€', GBP: '£', CAD: 'CA$', AUD: 'AU$', CHF: 'Fr ', JPY: '¥', SGD: 'SG$'
+    };
+
+    function getSym() {
+      const code = document.getElementById('currencySelect').value;
+      return currencySymbols[code] || '$';
+    }
+
+    function calculate() {
+      const sym = getSym();
+      const budgetGross = parseFloat(document.getElementById('clientMilestone').value) || 0;
+      const retainagePct = parseFloat(document.getElementById('agencyFee').value) || 0;
+      const retainageAmount = budgetGross * (retainagePct / 100);
+      const budgetAfterRetainage = budgetGross - retainageAmount;
+
+      // 1. Collect Crew Members
+      const crewRows = document.querySelectorAll('#crewTbody tr');
+      const crew = [];
+      let totalLaborAgreed = 0;
+
+      crewRows.forEach(row => {
+        const name = (row.querySelector('.crew-name').value || 'Crew Member').trim();
+        const role = (row.querySelector('.crew-role').value || 'Crew').trim();
+        const days = parseFloat(row.querySelector('.crew-days').value) || 1;
+        const rate = parseFloat(row.querySelector('.crew-rate').value) || 0;
+        const laborTotal = days * rate;
+        totalLaborAgreed += laborTotal;
+        crew.push({ name, role, days, rate, laborTotal, kitFee: 0, outOfPocket: 0, netPayout: 0 });
+      });
+
+      document.getElementById('totalLaborDisplay').textContent = `${sym}${totalLaborAgreed.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+      // 2. Collect Kit Fees
+      const kitRows = document.querySelectorAll('#kitTbody tr');
+      let totalKitFees = 0;
+      kitRows.forEach(row => {
+        const ownerName = (row.querySelector('.kit-owner').value || '').trim().toLowerCase();
+        const amount = parseFloat(row.querySelector('.kit-amount').value) || 0;
+        totalKitFees += amount;
+
+        const found = crew.find(c => c.name.toLowerCase() === ownerName);
+        if (found) {
+          found.kitFee += amount;
+        }
+      });
+
+      // 3. Collect Production Expenses
+      const expRows = document.querySelectorAll('#expTbody tr');
+      let totalExpenses = 0;
+      expRows.forEach(row => {
+        const payerName = (row.querySelector('.prod-payer').value || '').trim().toLowerCase();
+        const amount = parseFloat(row.querySelector('.prod-amount').value) || 0;
+        totalExpenses += amount;
+
+        const found = crew.find(c => c.name.toLowerCase() === payerName);
+        if (found) {
+          found.outOfPocket += amount;
+        }
+      });
+
+      const totalReimbursements = totalKitFees + totalExpenses;
+      const netDistributable = Math.max(0, budgetAfterRetainage - totalReimbursements);
+
+      // Payout logic:
+      // If budget covers agreed labor, pay agreed labor + kit fee + expenses, plus split remaining profit by labor weight!
+      // If budget is tighter than agreed labor, distribute netDistributable proportionally by labor share.
+      crew.forEach(c => {
+        let laborPayout = 0;
+        if (totalLaborAgreed > 0) {
+          const laborShare = c.laborTotal / totalLaborAgreed;
+          if (netDistributable >= totalLaborAgreed) {
+            const surplus = netDistributable - totalLaborAgreed;
+            laborPayout = c.laborTotal + (surplus * laborShare);
+          } else {
+            laborPayout = netDistributable * laborShare;
+          }
+        }
+        c.netPayout = laborPayout + c.kitFee + c.outOfPocket;
+      });
+
+      // Update UI
+      document.getElementById('resGrossBudget').textContent = `${sym}${budgetGross.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      document.getElementById('resTotalReimbursements').textContent = `${sym}${totalReimbursements.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      document.getElementById('resNetPool').textContent = `${sym}${netDistributable.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+      const listEl = document.getElementById('crewSummaryList');
+      listEl.innerHTML = '';
+
+      crew.forEach(c => {
+        const row = document.createElement('div');
+        row.className = 'settlement-row';
+        row.innerHTML = `
+          <div>
+            <strong>${c.name}</strong> <span style="color:var(--muted);font-size:0.8rem;">(${c.role} &bull; ${c.days}d @ ${sym}${c.rate}/d)</span>
+            <div style="font-size:0.75rem;color:var(--muted);margin-top:2px;">
+              Kit Fee: ${sym}${c.kitFee.toFixed(2)} | Out-of-Pocket: ${sym}${c.outOfPocket.toFixed(2)}
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-weight:700;color:var(--green);font-size:1.1rem;">
+              ${sym}${c.netPayout.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </div>
+            <span class="badge-paid">Total Payout</span>
+          </div>
+        `;
+        listEl.appendChild(row);
+      });
+
+      document.getElementById('resultsCard').style.display = 'block';
+      document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Dynamic Row Helpers
+    document.getElementById('btnAddCrew').addEventListener('click', () => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><input type="text" value="New Crew Member" class="crew-name" /></td>
+        <td><input type="text" value="Camera PA" class="crew-role" /></td>
+        <td><input type="number" value="1" class="crew-days" min="1" max="60" /></td>
+        <td><input type="number" value="350.00" class="crew-rate" step="0.01" /></td>
+        <td><button class="btn btn-secondary btn-del-crew" style="padding:4px 8px;">✕</button></td>
+      `;
+      document.getElementById('crewTbody').appendChild(tr);
+      attachDeleteListeners();
+    });
+
+    document.getElementById('btnAddKit').addEventListener('click', () => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><input type="text" value="Drone / Gimbal Rig" class="kit-desc" /></td>
+        <td><input type="text" value="Jordan V." class="kit-owner" /></td>
+        <td><input type="number" value="150.00" class="kit-amount" step="0.01" /></td>
+        <td><button class="btn btn-secondary btn-del-kit" style="padding:4px 8px;">✕</button></td>
+      `;
+      document.getElementById('kitTbody').appendChild(tr);
+      attachDeleteListeners();
+    });
+
+    document.getElementById('btnAddExp').addEventListener('click', () => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><input type="text" value="Mileage Reimbursement" class="prod-desc" /></td>
+        <td><input type="text" value="Elena R." class="prod-payer" /></td>
+        <td><input type="number" value="65.00" class="prod-amount" step="0.01" /></td>
+        <td><button class="btn btn-secondary btn-del-exp" style="padding:4px 8px;">✕</button></td>
+      `;
+      document.getElementById('expTbody').appendChild(tr);
+      attachDeleteListeners();
+    });
+
+    function attachDeleteListeners() {
+      document.querySelectorAll('.btn-del-crew').forEach(btn => {
+        btn.onclick = () => btn.closest('tr').remove();
+      });
+      document.querySelectorAll('.btn-del-kit').forEach(btn => {
+        btn.onclick = () => btn.closest('tr').remove();
+      });
+      document.querySelectorAll('.btn-del-exp').forEach(btn => {
+        btn.onclick = () => btn.closest('tr').remove();
+      });
+    }
+
+    attachDeleteListeners();
+    document.getElementById('btnCalculate').addEventListener('click', calculate);
+
+    // Share & Copy Handlers
+    document.getElementById('btnCopySummary').addEventListener('click', () => {
+      const title = document.getElementById('projectName').value;
+      const budget = document.getElementById('resGrossBudget').textContent;
+      const reimbursements = document.getElementById('resTotalReimbursements').textContent;
+      const netPool = document.getElementById('resNetPool').textContent;
+
+      let text = `🎬 Shoot Wrap Sheet: ${title}\n`;
+      text += `Gross Shoot Budget: ${budget}\n`;
+      text += `Reimbursements (Kit + Expenses): ${reimbursements}\n`;
+      text += `Net Labor Pool: ${netPool}\n\n`;
+      text += `Final Crew Payouts:\n`;
+
+      document.querySelectorAll('#crewSummaryList .settlement-row').forEach(row => {
+        const name = row.querySelector('strong').textContent;
+        const details = row.querySelector('span').textContent;
+        const payout = row.querySelector('.badge-paid').previousElementSibling.textContent.trim();
+        text += `• ${name} ${details}: ${payout}\n`;
+      });
+
+      text += `\nCalculated with ZapSplit (Zero App, No Sign-Up):\nhttps://geornaden.github.io/zapsplit/film-crew-production-expense-split-no-app.html`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Wrap sheet copied to clipboard!');
+      });
+    });
+
+    document.getElementById('btnShareWhatsApp').addEventListener('click', () => {
+      const title = document.getElementById('projectName').value;
+      const text = encodeURIComponent(`🎬 Shoot Wrap Sheet for "${title}" calculated on ZapSplit:\nhttps://geornaden.github.io/zapsplit/film-crew-production-expense-split-no-app.html`);
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    });
+  </script>
+</body>
+</html>
