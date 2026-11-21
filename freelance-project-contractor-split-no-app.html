@@ -519,7 +519,24 @@
         text += `• ${el.innerText.replace(/\n/g, ' ')}\n`;
       });
       text += `\nSplit calculated via ZapSplit: https://geornaden.github.io/zapsplit/freelance-project-contractor-split-no-app.html`;
-      navigator.clipboard.writeText(text).then(() => alert('Breakdown copied to clipboard!'));
+      const fallbackCopy = () => {
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.cssText = 'position:fixed;left:-9999px;opacity:0;';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); } catch {}
+          document.body.removeChild(ta);
+        } catch {}
+        alert('Breakdown copied to clipboard!');
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => alert('Breakdown copied to clipboard!')).catch(fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
     });
 
     document.getElementById('btnShareWhatsApp').addEventListener('click', () => {

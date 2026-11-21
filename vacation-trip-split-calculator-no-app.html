@@ -585,7 +585,24 @@
         lines.push(el.textContent.replace(/\s+/g, ' ').trim());
       });
       lines.push("\nSplit receipts without apps: https://geornaden.github.io/zapsplit/");
-      navigator.clipboard.writeText(lines.join('\n'));
+      var copyStr = lines.join('\n');
+      var fallbackCopy = function () {
+        try {
+          var ta = document.createElement('textarea');
+          ta.value = copyStr;
+          ta.setAttribute('readonly', '');
+          ta.style.cssText = 'position:fixed;left:-9999px;opacity:0;';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); } catch (e) {}
+          document.body.removeChild(ta);
+        } catch (e) {}
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(copyStr).catch(fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
       var btn = this;
       btn.textContent = 'Copied!';
       setTimeout(function () { btn.textContent = '📋 Copy Group Summary'; }, 1600);
